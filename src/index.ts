@@ -7,7 +7,8 @@ const logger = pino();
 app.use(express.json()); // Parse response payload to json
 
 app.get("/test", (req, res) => {
-  res.status(200).send("Hello 42211");
+  debugger;
+  res.status(200).send("Hello 41122");
 });
 
 if (process.env.NODE_ENV === "production") {

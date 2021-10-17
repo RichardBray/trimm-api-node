@@ -4,7 +4,7 @@ import { PORT } from "./src/config";
 
 export default defineConfig({
   server: {
-    port: PORT as number,
+    port: (PORT as number) || 3000,
   },
   plugins: [
     ...VitePluginNode({

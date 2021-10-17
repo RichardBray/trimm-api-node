@@ -1,3 +1,1 @@
-function logger() {
-
-}
+function logger() {}
