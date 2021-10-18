@@ -5,7 +5,7 @@ import { PORT } from "./config/index.js";
 
 const app = express();
 
-app.use(express.json()); // Parse response payload to json
+app.use(express.json());
 
 app.get("/test", (req, res) => {
   logger.warn("testing");
