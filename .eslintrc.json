@@ -5,5 +5,6 @@
     "sourceType": "module"
   },
   "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "ignorePatterns": ["**/dist/**/*.js"],
   "rules": {}
 }
