@@ -7,7 +7,6 @@ const logger = pino();
 app.use(express.json()); // Parse response payload to json
 
 app.get("/test", (req, res) => {
-  debugger;
   res.status(200).send("Hello 41122");
 });
 
