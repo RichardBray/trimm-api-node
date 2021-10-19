@@ -1,17 +1,37 @@
 import express from "express";
-import logger from "./utils/logger.js";
+import { buildSchema } from "graphql";
+import { graphqlHTTP } from "express-graphql";
 
-import { PORT } from "./config/index.js";
+import logger from "./utils/logger.js";
+import * as config from "./config.js";
+
+import authRouter from "./components/Auth/AuthRouter.js";
 
 const app = express();
 
-app.use(express.json());
+const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
 
-app.get("/test", (req, res) => {
-  logger.warn("testing");
-  res.status(200).send("Hello 42211");
-});
+const rootValue = {
+  hello: () => {
+    return "Hello world!";
+  },
+};
 
-app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
+app.use(authRouter);
+
+app.use(
+  "/test",
+  graphqlHTTP({
+    schema,
+    rootValue,
+    graphiql: true,
+  })
+);
+
+app.listen(config.port, () => {
+  logger.info(`Server running on port ${config.port}`);
 });

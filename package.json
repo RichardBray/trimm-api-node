@@ -5,17 +5,21 @@
   "main": "index.js",
   "scripts": {
     "build": "swc src --out-dir dist",
-    "build-dev": "npm run build && NODE_ENV=development node --inspect dist/index.js",
+    "build-dev": "npm run build && NODE_ENV=development AWS_REGION=us-west-2 node --inspect dist/index.js",
+    "type-check": "tsc --noEmit",
     "dev": "nodemon --ext ts --exec \"npm run build-dev\"",
-    "start": "npm run build && NODE_ENV=production node dist/index.js",
-    "prepare": "husky install"
+    "start": "npm run build && NODE_ENV=production node dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amazon-cognito-identity-js": "^5.2.0",
+    "aws-sdk": "^2.1010.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.6.1",
     "pino": "^7.0.2",
     "pino-pretty": "^7.1.0"
   },
