@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3000
+
+###
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "richardbray89@gmail.com",
+  "password": "Test(1234)"
+}
+###
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "username": "richardbray89@gmail.com",
+  "password": "Test(1234)"
+}
+
+###
+POST {{baseUrl}}/verify
+Content-Type: application/json
+
+{
+  "username": "richardbray89@gmail.com",
+  "verificationCode": "519253"
+}
+
+###
+POST {{baseUrl}}/logout
+Content-Type: application/json
+
+{
+  "username": "richardbray89@gmail.com"
+}
