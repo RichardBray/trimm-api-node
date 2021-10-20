@@ -1,6 +1,13 @@
+import { Request } from "express";
+import { JwtPayload } from "jsonwebtoken";
+
+import logger from "../../utils/logger.js";
+import AuthController from "../Auth/AuthController.js";
 class ItemResolvers {
-  static returnAllItems(obj: any, args: any) {
-    console.log(obj, args);
+  static returnAllItems(req: Request) {
+    logger.info("Returning all items");
+    const userData: JwtPayload = AuthController.verifyAccessToken(req);
+    console.log(userData.username, "username");
     return [
       {
         item_uuid: 1,

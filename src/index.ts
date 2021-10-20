@@ -12,10 +12,12 @@ const app = express();
 app.use(authRouter);
 app.use(
   "/graphql",
-  graphqlHTTP({
+  graphqlHTTP((request) => ({
     schema: itemsSchema,
     graphiql: true,
-  })
+    rootValue: request,
+    pretty: true,
+  }))
 );
 
 app.listen(config.port, () => {

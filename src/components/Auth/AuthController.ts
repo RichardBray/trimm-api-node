@@ -136,15 +136,23 @@ class AuthController {
     }
   }
 
-  static verifyAccessToken(token: string): JwtPayload | void {
+  static verifyAccessToken(req: Request): JwtPayload | Error {
     try {
-      const pem = jwkToPem(config.jwtPublicKey);
+      if (!req.headers.authorization) {
+        throw new Error("No auth header provided");
+      }
 
-      return jwt.verify(token, pem, {
+      const pem = jwkToPem(config.jwtPublicKey);
+      const token = req.headers.authorization.split(" ")[1];
+
+      const verify = jwt.verify(token, pem, {
         algorithms: ["RS256"],
       }) as JwtPayload;
+
+      return verify;
     } catch (err) {
       logger.error(err);
+      throw new Error(err as string);
     }
   }
 }
