@@ -1,5 +1,7 @@
 @baseUrl = http://localhost:3000
 
+## AUTH CALLS
+
 ###
 POST {{baseUrl}}/login
 Content-Type: application/json
@@ -33,3 +35,5 @@ Content-Type: application/json
 {
   "username": "richardbray89@gmail.com"
 }
+
+## ITEM CALLS

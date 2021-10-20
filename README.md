@@ -5,7 +5,10 @@
 - ExpressJS
 - Pino
 - GraphQL
+- GreaphQL Tools
 - Prisma
+- AWC Cognito
+- JWT
 
 ## AWS Services
 
