@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import "cross-fetch/dist/node-polyfill.js";
-import * as AWS from "aws-sdk/global.js";
 import {
   CognitoUserPool,
   CognitoUser,
   AuthenticationDetails,
-  CognitoUserSession,
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
+import jwkToPem from "jwk-to-pem";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 import * as config from "../../config.js";
 import logger from "../../utils/logger.js";
@@ -31,9 +31,13 @@ class AuthController {
       cognitoUser.authenticateUser(authDetails, {
         onSuccess: (result) => {
           const accessToken = result.getAccessToken().getJwtToken();
-          // AuthController.#configureRefreshCredentials(result);
+          const refreshToken = result.getRefreshToken().getToken();
+
+          logger.info("User login successful");
+
           res.status(200).send({
             accessToken,
+            refreshToken,
           });
         },
         onFailure: (err) => {
@@ -68,27 +72,6 @@ class AuthController {
     };
 
     return new CognitoUser(userData);
-  }
-
-  static #configureRefreshCredentials(result: CognitoUserSession) {
-    const name = `cognito-idp.${process.env.AWS_REGION}.amazonaws.com/${config.cognito.userPoolId}`;
-
-    const cognitoIdentityCredentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: config.cognito.identityPoolId,
-      Logins: {
-        [name]: result.getIdToken().getJwtToken(),
-      },
-    });
-
-    AWS.config.credentials = cognitoIdentityCredentials;
-
-    cognitoIdentityCredentials.refresh((error) => {
-      if (error) {
-        logger.error(error);
-      } else {
-        logger.info("User login successful");
-      }
-    });
   }
 
   static register(req: Request, res: Response) {
@@ -153,9 +136,16 @@ class AuthController {
     }
   }
 
-  // TODO
-  static forgotPassword() {
-    return false;
+  static verifyAccessToken(token: string): JwtPayload | void {
+    try {
+      const pem = jwkToPem(config.jwtPublicKey);
+
+      return jwt.verify(token, pem, {
+        algorithms: ["RS256"],
+      }) as JwtPayload;
+    } catch (err) {
+      logger.error(err);
+    }
   }
 }
 
