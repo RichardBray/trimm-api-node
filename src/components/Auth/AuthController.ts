@@ -10,7 +10,7 @@ import jwkToPem from "jwk-to-pem";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 import * as config from "../../config.js";
-import logger from "../../utils/logger.js";
+import logger from "../../helpers/logger.js";
 
 class AuthController {
   static login(req: Request, res: Response) {

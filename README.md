@@ -1,5 +1,7 @@
 # Trimm API (Node)
 
+_Note: this will not work without a .env file_
+
 ## Technologies
 
 - ExpressJS
