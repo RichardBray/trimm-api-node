@@ -13,7 +13,7 @@ model categories {
   cat_name   String     @db.VarChar(255)
   cat_total  Int?
   cat_budget Int?
-  user_id    Int
+  user_id    String     @db.VarChar(255)
   users      users      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "categories_ibfk_1")
   spending   spending[]
 
@@ -27,7 +27,7 @@ model spending {
   item_price  Float      @db.Float
   create_dttm DateTime   @db.DateTime(0)
   cat_id      Int
-  user_id     Int
+  user_id     String     @db.VarChar(255)
   categories  categories @relation(fields: [cat_id], references: [cat_id], onDelete: NoAction, onUpdate: NoAction, map: "spending_ibfk_1")
   users       users      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "spending_ibfk_2")
 
@@ -36,7 +36,7 @@ model spending {
 }
 
 model users {
-  user_id       Int          @id @default(autoincrement())
+  user_id       String       @id @db.VarChar(255)
   user_uuid     String       @db.VarChar(36)
   user_name     String       @db.VarChar(255)
   user_email    String       @db.VarChar(255)

@@ -1,4 +1,5 @@
 @baseUrl = http://localhost:3000
+@testEmail = "fodife@ryteto.me"
 
 ## AUTH CALLS
 
@@ -7,7 +8,7 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "username": "richardbray89@gmail.com",
+  "username": {{testEmail}},
   "password": "Test(1234)"
 }
 ###
@@ -15,7 +16,7 @@ POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
-  "username": "richardbray89@gmail.com",
+  "username": {{testEmail}},
   "password": "Test(1234)"
 }
 
@@ -24,8 +25,8 @@ POST {{baseUrl}}/verify
 Content-Type: application/json
 
 {
-  "username": "richardbray89@gmail.com",
-  "verificationCode": "519253"
+  "username": {{testEmail}},
+  "verificationCode": "228419"
 }
 
 ###
@@ -33,7 +34,7 @@ POST {{baseUrl}}/logout
 Content-Type: application/json
 
 {
-  "username": "richardbray89@gmail.com"
+  "username": {{testEmail}}
 }
 
 ## ITEM CALLS
@@ -41,8 +42,8 @@ Content-Type: application/json
 ###
 POST {{baseUrl}}/graphql
 Content-Type: application/json
-Authorization: Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiM2QyMjRlNGMtOTdlMS00OTE1LWFjYjAtYTNiNzM5NTFkYTM3Iiwic3ViIjoiOTgyMDhjYzAtMmI4OC00MWFhLTkwNDItNjA0YTYwMGVlZThiIiwiZXZlbnRfaWQiOiJkZTEwYmY0Ni00YTA2LTQ2NjQtYTYwNi1kMGRmY2RjMjRmYzUiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM0NzUwNzYzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzQ3NTQzNjMsImlhdCI6MTYzNDc1MDc2MywianRpIjoiOGNiYTdhODctNTZhYi00OWI0LThhNmQtYzY4NDFkNzQzZmI0IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6Ijk4MjA4Y2MwLTJiODgtNDFhYS05MDQyLTYwNGE2MDBlZWU4YiJ9.KqJdt65a89GB7HAPoOeFA3Yb8O_1jleq1JBU2HMrX33GG2hCrvrxGN6wMdna8DMlNvEgI9sGaALy0zlEON_pT7trA5MhoTEIoaflnj9mKZhAfBSfkSJeJYwKHGwUnMpTEqYuOylfKzly9kpqygU40f9365ztVR7vDVAsBwfe_pKF-ucIcYeQrZ1OaAzKnLAJBfUZLi-K-ijxlboFg2NlsWduTRX9tzWqn6RkSN-Fc80MEsxwLDYyjB8O-KOne4uN8TybKwurAqChgMWoqlSTRoiY8EJJV1-5CdDSjrR_7xzZB0QQcwejAtogflCNTtu8qpZWrnWnEp54GQeYCZu59g
+Authorization: Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiZDIwMWFiMGQtYzZmOS00MTI1LWJlOWYtNjBiNzk4NjIxM2NhIiwic3ViIjoiZmUyNTU0ZWItMTJmNi00NmE3LWJkZjEtZDE2NTFmMmUzMDdhIiwiZXZlbnRfaWQiOiIzNGY1ZmJmZS1lZTFjLTRkZjItOWNiNS1mNTg0ZTljYmVkNmQiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM0OTE3Njk5LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzQ5MjEyOTksImlhdCI6MTYzNDkxNzY5OSwianRpIjoiM2E3MDRmNDctZWYyMi00ZTAwLTg3YTItMmQ4NDRhMzhhMGMxIiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImZlMjU1NGViLTEyZjYtNDZhNy1iZGYxLWQxNjUxZjJlMzA3YSJ9.Dv0IXL2sMKCBjDZD_cXi3YuskzwTUEzqWjvP0QiR-vtNQ5FlMhwhz7NV7ZcBCj2HP2PWnGnUUPSetFk_qx-1IJWEv9ANby3P4UBEDR78sClcIvbz07478GmookJk_jIhQD2_cuPn_cNR11p4UKaw0dnxVtlBfJwq_1G6LWRMiRS5AHf6nIZ1m0Ip0Z3wr7TeTKJAaBvsqmx_4fyQgyhlpudHn-ToIis8OInimDQhtoDJtZAB2SaugCKYFa-J0QCuznESOZtE63z-jGf5bntDeDYxvv_INEbDT0NZ-Mlxe4X7RhPs7LUNsbX_cng0Rw1CCz_NHsMYvrPBj__1vovbmg
 
 {
-  "query": "query {\nreturnAllItems {\nitem_uuid\nitem_name\nitem_price\n}\n}"
+  "query": "query {\nitems {\nitem_uuid\nitem_name\nitem_price\n}\n}"
 }

@@ -9,7 +9,7 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    returnAllItems: [Item]
+    items(start_date: String!, end_date: String!): [Item]
   }
 
   type Item {
@@ -31,11 +31,11 @@ const typeDefs = `#graphql
   scalar DateTime
 `;
 
-const { returnAllItems } = ItemResolvers;
+const { getAllItems } = ItemResolvers;
 
 const resolvers = {
   Query: {
-    returnAllItems,
+    items: getAllItems,
   },
   DateTime: DateTimeResolver,
 };

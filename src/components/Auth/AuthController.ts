@@ -5,12 +5,14 @@ import {
   CognitoUser,
   AuthenticationDetails,
   CognitoUserAttribute,
+  ISignUpResult,
 } from "amazon-cognito-identity-js";
 import jwkToPem from "jwk-to-pem";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 import * as config from "../../config.js";
 import logger from "../../helpers/logger.js";
+import CategoriesResolver from "../Categories/CategoriesResolver.js";
 
 class AuthController {
   static login(req: Request, res: Response) {
@@ -97,6 +99,9 @@ class AuthController {
           res.status(400).send(err);
         } else {
           logger.info("User registration successful");
+          const userId = result?.userSub as string;
+
+          CategoriesResolver.addDefaultCategories(userId);
           res.status(200).send(result);
         }
       }
