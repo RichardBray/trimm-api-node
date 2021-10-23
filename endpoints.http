@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000
-@testEmail = "fodife@ryteto.me"
+@testEmail = "tinykada@tempmailin.com"
 
 ## AUTH CALLS
 

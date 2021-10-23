@@ -5,7 +5,6 @@ import {
   CognitoUser,
   AuthenticationDetails,
   CognitoUserAttribute,
-  ISignUpResult,
 } from "amazon-cognito-identity-js";
 import jwkToPem from "jwk-to-pem";
 import jwt, { JwtPayload } from "jsonwebtoken";
@@ -13,16 +12,11 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import * as config from "../../config.js";
 import logger from "../../helpers/logger.js";
 import CategoriesResolver from "../Categories/CategoriesResolver.js";
+import UserResolver from "../User/UserResolver.js";
 
 class AuthController {
   static login(req: Request, res: Response) {
     try {
-      logger.info("Attempting user login");
-
-      if (!req.body.password) {
-        throw new Error("Password is required");
-      }
-
       const authData = {
         Username: req.body.username,
         Password: req.body.password,
@@ -43,12 +37,12 @@ class AuthController {
           });
         },
         onFailure: (err) => {
-          logger.error(err);
+          logger.error(`authenticateUser Error: ${err}`);
           res.status(401).send(err);
         },
       });
     } catch (err) {
-      logger.error(err);
+      logger.error(`login Error: ${err}`);
       res.status(400).send(err);
     }
   }
@@ -77,8 +71,6 @@ class AuthController {
   }
 
   static register(req: Request, res: Response) {
-    logger.info("Attempting user registration");
-
     const userPool = AuthController.#createUserPool();
     const attributeList = [];
     const dataEmail = {
@@ -95,22 +87,23 @@ class AuthController {
       [],
       (err, result) => {
         if (err) {
-          logger.error(err);
+          logger.error(`register Error: ${err}`);
           res.status(400).send(err);
         } else {
-          logger.info("User registration successful");
+          logger.info(`User registration successful: ${result}`);
           const userId = result?.userSub as string;
 
           CategoriesResolver.addDefaultCategories(userId);
-          res.status(200).send(result);
+          UserResolver.addDefaultUserSettings(userId);
+          res.status(201).send({
+            msg: "SUCCESS",
+          });
         }
       }
     );
   }
 
   static verifyRegistration(req: Request, res: Response) {
-    logger.info("Attempting user verification");
-
     const cognitoUser = AuthController.#createCognitoUser(req);
 
     cognitoUser.confirmRegistration(
@@ -118,25 +111,26 @@ class AuthController {
       true,
       (err: Error, result: string) => {
         if (err) {
-          logger.error(err);
+          logger.error(`confirmRegistration Error: ${err}`);
           res.status(400).send(err);
         } else {
-          logger.info("User verification successful");
-          res.status(200).send(result);
+          logger.info(`User verification successful: ${result}`);
+          res.status(200).send({
+            msg: result,
+          });
         }
       }
     );
   }
 
   static logout(req: Request, res: Response) {
-    logger.info("Attempting logout");
     try {
       const cognitoUser = AuthController.#createCognitoUser(req);
 
       cognitoUser.signOut();
       logger.info("Logout successful");
     } catch (err) {
-      logger.error(err);
+      logger.error(`logout Error: ${err}`);
       res.status(400).send(err);
     }
   }

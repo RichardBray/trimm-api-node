@@ -21,7 +21,7 @@ class ItemResolvers {
             gte: args.start_date,
             lte: args.end_date,
           },
-          user_id: userData.username,
+          user_uuid: userData.username,
         },
       });
     } catch (err) {

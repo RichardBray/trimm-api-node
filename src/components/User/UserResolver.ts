@@ -1,9 +1,28 @@
-import { JwtPayload } from "jsonwebtoken";
+import prismaPkg, { Prisma } from "@prisma/client/index.js";
+
+import logger from "../../helpers/logger.js";
+
+const { PrismaClient } = prismaPkg;
+const prisma = new PrismaClient();
 
 class UserResolvers {
   // TODO
-  static userIfFromToken(decodedJwt: JwtPayload): number {
-    return 5;
+  static async addDefaultUserSettings(userId: string) {
+    try {
+      const newUserData: Prisma.usersCreateInput = {
+        user_uuid: userId,
+        user_name: "test",
+        user_email: "test",
+        user_currency: "£ - Pound Sterling",
+      };
+      const result = await prisma.users.create({
+        data: newUserData,
+      });
+
+      return result;
+    } catch (err) {
+      logger.error(`addDefaultUserSettings Error: ${err}`);
+    }
   }
 }
 
