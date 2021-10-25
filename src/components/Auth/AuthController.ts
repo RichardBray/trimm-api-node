@@ -90,11 +90,12 @@ class AuthController {
           logger.error(`register Error: ${err}`);
           res.status(400).send(err);
         } else {
-          logger.info(`User registration successful: ${result}`);
+          logger.info(`User registration successful: ${result?.userSub}`);
           const userId = result?.userSub as string;
+          const userEmail = req.body.username;
 
           CategoriesResolver.addDefaultCategories(userId);
-          UserResolver.addDefaultUserSettings(userId);
+          UserResolver.addDefaultUserSettings(userId, userEmail);
           res.status(201).send({
             msg: "SUCCESS",
           });

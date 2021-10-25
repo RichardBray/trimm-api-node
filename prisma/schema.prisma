@@ -19,8 +19,7 @@ model categories {
 }
 
 model spending {
-  item_id     Int        @id @default(autoincrement())
-  item_uuid   String     @db.VarChar(36)
+  item_uuid   String     @id @db.VarChar(36)
   item_name   String     @db.VarChar(255)
   item_price  Float      @db.Float
   create_dttm DateTime   @db.DateTime(0)
@@ -34,10 +33,9 @@ model spending {
 }
 
 model users {
-  user_uuid     String       @id @default("null") @db.VarChar(255)
+  user_uuid     String       @id @db.VarChar(255)
   user_name     String       @db.VarChar(255)
   user_email    String       @db.VarChar(255)
-  user_password String?      @db.VarChar(255)
   user_currency String       @db.VarChar(36)
   categories    categories[]
   spending      spending[]

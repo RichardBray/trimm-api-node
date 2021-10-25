@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000
-@testEmail = "tinykada@tempmailin.com"
+@testEmail = "wybuluty@onekisspresave.com"
 
 ## AUTH CALLS
 
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
   "username": {{testEmail}},
-  "verificationCode": "228419"
+  "verificationCode": "869689"
 }
 
 ###
@@ -39,11 +39,11 @@ Content-Type: application/json
 
 ## ITEM CALLS
 
-###
+### get all items
 POST {{baseUrl}}/graphql
 Content-Type: application/json
-Authorization: Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiZDIwMWFiMGQtYzZmOS00MTI1LWJlOWYtNjBiNzk4NjIxM2NhIiwic3ViIjoiZmUyNTU0ZWItMTJmNi00NmE3LWJkZjEtZDE2NTFmMmUzMDdhIiwiZXZlbnRfaWQiOiIzNGY1ZmJmZS1lZTFjLTRkZjItOWNiNS1mNTg0ZTljYmVkNmQiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM0OTE3Njk5LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzQ5MjEyOTksImlhdCI6MTYzNDkxNzY5OSwianRpIjoiM2E3MDRmNDctZWYyMi00ZTAwLTg3YTItMmQ4NDRhMzhhMGMxIiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImZlMjU1NGViLTEyZjYtNDZhNy1iZGYxLWQxNjUxZjJlMzA3YSJ9.Dv0IXL2sMKCBjDZD_cXi3YuskzwTUEzqWjvP0QiR-vtNQ5FlMhwhz7NV7ZcBCj2HP2PWnGnUUPSetFk_qx-1IJWEv9ANby3P4UBEDR78sClcIvbz07478GmookJk_jIhQD2_cuPn_cNR11p4UKaw0dnxVtlBfJwq_1G6LWRMiRS5AHf6nIZ1m0Ip0Z3wr7TeTKJAaBvsqmx_4fyQgyhlpudHn-ToIis8OInimDQhtoDJtZAB2SaugCKYFa-J0QCuznESOZtE63z-jGf5bntDeDYxvv_INEbDT0NZ-Mlxe4X7RhPs7LUNsbX_cng0Rw1CCz_NHsMYvrPBj__1vovbmg
+Authorization: Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiN2E5NDdlNDEtYTdhMC00NWFjLTk5N2ItZTYyYjljNjg4ZjlkIiwic3ViIjoiZjAwODFmZDAtODE1MS00OTA3LWFhZjQtMGRkYzg3NDQxN2ZlIiwiZXZlbnRfaWQiOiJlNTIwMjZjOC03M2M2LTRhMjAtOTM1Zi1jYjk1YTllYzkzNzAiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1MTgyMjAzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzUxODU4MDMsImlhdCI6MTYzNTE4MjIwMywianRpIjoiMGIzNzNmNGQtZTcwMC00OTBiLTg1NDEtZjI4MWIwM2Y2N2E4IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImYwMDgxZmQwLTgxNTEtNDkwNy1hYWY0LTBkZGM4NzQ0MTdmZSJ9.Tc3Z7XnKUGOAtJ0W17Id0otAAzeQEeI_0LpJ-HpeQ1tlHkjSwpkteiZG54XLLSZ4gxXV2PqCfa2UffAWYbubcEA3qEYV9ktl12C8ThTnCW_3H59dr-8qct1R4LdB2s90N0hBeF6BQihwMLuA6bPJbvDb_8RpcuzuxWD4OVGKDde39LaWch8Y6PXqw1OpghmuaOHeuhxIEXg5BzuSYT_3YSdWz6FOW7VUJfPk-VXnL6iU_Zvw4aTYqav1wfZilZKB3AkZ46Q1bk0XIWR5ITYVaWwxkEGixIF5pnHV9TqksyoAVvMNGVhJXroyMh-lEBDl3DPmIRh-k1OZaXFc9uOR3g
 
 {
-  "query": "query {\nitems {\nitem_uuid\nitem_name\nitem_price\n}\n}"
+  "query": "query {\n  items(start_date:\"2021-01-01\", end_date: \"2021-02-01\") {\n    item_uuid,\n    item_name,\n    item_price,\n    create_dttm,\n    cat_id\n  }\n}"
 }
