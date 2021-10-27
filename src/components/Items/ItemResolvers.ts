@@ -18,8 +18,8 @@ class ItemResolvers {
       return context.prisma.spending.findMany({
         where: {
           create_dttm: {
-            gte: new Date(args.start_date),
-            lte: new Date(args.end_date),
+            gte: args.start_date,
+            lte: args.end_date,
           },
           user_uuid: userData.username,
         },

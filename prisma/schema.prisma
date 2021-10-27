@@ -10,7 +10,6 @@ datasource db {
 
 model categories {
   id        String @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  cat_id    Int
   cat_uuid  String
   cat_name  String
   user_uuid String
@@ -20,9 +19,9 @@ model spending {
   id          String @id @default(dbgenerated()) @map("_id") @db.ObjectId
   item_uuid   String
   item_name   String
-  item_price  String
-  create_dttm String
-  cat_id      Int
+  item_price  Int
+  create_dttm DateTime
+  cat_uuid    String
   user_uuid   String
 }
 
