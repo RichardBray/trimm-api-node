@@ -28,7 +28,7 @@ https://swc.rs/docs/installation/
 
 ### Things to docs
 
-- Add user default after registration
+- Get all categories
 - Save user's first name
 - Create an item
 - Delete an item

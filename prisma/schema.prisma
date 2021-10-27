@@ -1,42 +1,35 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model categories {
-  cat_id     Int        @id @default(autoincrement())
-  cat_uuid   String     @db.VarChar(36)
-  cat_name   String     @db.VarChar(255)
-  user_uuid  String     @db.VarChar(255)
-  users      users      @relation(fields: [user_uuid], references: [user_uuid], onDelete: NoAction, onUpdate: NoAction, map: "categories_ibfk_1")
-  spending   spending[]
-
-  @@index([user_uuid], map: "user_uuid")
+  id        String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  cat_id    Int
+  cat_uuid  String
+  cat_name  String
+  user_uuid String
 }
 
 model spending {
-  item_uuid   String     @id @db.VarChar(36)
-  item_name   String     @db.VarChar(255)
-  item_price  Float      @db.Float
-  create_dttm DateTime   @db.DateTime(0)
+  id          String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  item_uuid   String
+  item_name   String
+  item_price  String
+  create_dttm String
   cat_id      Int
-  user_uuid   String     @db.VarChar(255)
-  categories  categories @relation(fields: [cat_id], references: [cat_id], onDelete: NoAction, onUpdate: NoAction, map: "spending_ibfk_1")
-  users       users      @relation(fields: [user_uuid], references: [user_uuid], onDelete: NoAction, onUpdate: NoAction, map: "spending_ibfk_2")
-
-  @@index([cat_id], map: "cat_id")
-  @@index([user_uuid], map: "user_uuid")
+  user_uuid   String
 }
 
 model users {
-  user_uuid     String       @id @db.VarChar(255)
-  user_name     String       @db.VarChar(255)
-  user_email    String       @db.VarChar(255)
-  user_currency String       @db.VarChar(36)
-  categories    categories[]
-  spending      spending[]
+  id            String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  user_uuid     String
+  user_name     String
+  user_email    String
+  user_currency String
 }
