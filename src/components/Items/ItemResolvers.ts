@@ -9,7 +9,7 @@ import { Context } from "../../helpers/graphqlContext.js";
 class ItemResolvers {
   static getAllItems(
     req: Request,
-    args: { start_date: string; end_date: string },
+    args: { startDate: string; endDate: string },
     context: Context
   ) {
     try {
@@ -18,8 +18,8 @@ class ItemResolvers {
       return context.prisma.spending.findMany({
         where: {
           create_dttm: {
-            gte: args.start_date,
-            lte: args.end_date,
+            gte: new Date(args.startDate),
+            lte: new Date(args.endDate),
           },
           user_uuid: userData.username,
         },

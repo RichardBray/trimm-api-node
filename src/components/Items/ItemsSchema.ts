@@ -5,11 +5,11 @@ import ItemResolvers from "./ItemResolvers.js";
 const typeDefs = `#graphql
   type Mutation {
     createItem(itemCreateInput: ItemCreateInput!): Item
-    deleteItem(id: Int!): Boolean!
+    deleteItem(id: String!): Boolean!
   }
 
   type Query {
-    items(start_date: String!, end_date: String!): [Item]
+    items(startDate: String!, endDate: String!): [Item]
   }
 
   type Item {

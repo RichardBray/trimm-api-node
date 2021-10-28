@@ -1,7 +1,11 @@
+import { Request } from "express";
+import { JwtPayload } from "jsonwebtoken";
 import prismaPkg, { Prisma } from "@prisma/client/index.js";
 
 import generateUuid from "../../helpers/uuid.js";
+import AuthController from "../Auth/AuthController.js";
 import logger from "../../helpers/logger.js";
+import { Context } from "../../helpers/graphqlContext.js";
 
 const { PrismaClient } = prismaPkg;
 const prisma = new PrismaClient();
@@ -33,6 +37,21 @@ class CategoriesResolver {
       return result;
     } catch (err) {
       logger.error(`addDefaultCategories Error: ${err}`);
+    }
+  }
+
+  static getAllCategories(req: Request, _args: unknown, context: Context) {
+    try {
+      const userData: JwtPayload = AuthController.verifyAccessToken(req);
+
+      return context.prisma.categories.findMany({
+        where: {
+          user_uuid: userData.username,
+        },
+      });
+    } catch (err) {
+      logger.error(`getAllCategories Error: ${err}`);
+      return err;
     }
   }
 }
