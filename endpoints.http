@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
-@testEmail = "fekisimi@tempmailin.com"
-@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiYjgwNTQyMjEtZjAwOS00N2FhLTgyNmYtYTBmOTQyODQxZTkyIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiJiMWNhZGFhZi05NDUwLTRhNDEtODFiNi03YmIzZDFlMTQ5ODEiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1NDEzMjUxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzU0MTY4NTEsImlhdCI6MTYzNTQxMzI1MSwianRpIjoiZTQ1MzQ0ZmItMjVhMS00ZWQ2LTg2YTItZjY1ZGE2YzUxZWM0IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.elkGkTdIgkxGOYLlH9o4WksQlp46BZ9EY3ufuev0IjvSKJBHuZQ2oSUoyQJGcUG7xQ0oiY0gSPUYazQP1b9zaLIrpEil5n65KKBt3SsO-UWrxBJcyuLNfSgXVZb9PFiVgN0c21IFYA48dMDrB-UejZFzoHf8W8b2mHpAWLNBR77OSXhuZ53oD3-dqNh9qvNp9OibOj-Y2sKzX688eik3g6VyyW5bLvs1-WZQ_QhodGg6ioCh9QS_oXo76ZLGjw1LB8fH60lIAef8lPRjhmNoxV1h3cWk-q6EZHF3Be-fTmDac27jN3yukmEMLSFBu5KYyqu8IdVg66ODjp_9VonwOw
+@testEmail = fekisimi@tempmailin.com
+@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiYzNmYTkyM2ItYjBiNC00NTQ3LWE5OTYtNWIzYjBkOGY4ZmUzIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiJmNDAxMDQ1YS00ODY5LTQ3OGYtYTA4OS04Zjc5ZmE4YzJiY2MiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1NTgzNzEzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzU1ODczMTMsImlhdCI6MTYzNTU4MzcxMywianRpIjoiYWY5NmI1ZTktYTI3Yi00YTA4LWFjMTYtZmJjMzViNzY1Mzg3IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.on8yjf6Mg57F1E4zwOf_6kR9MmRnIroxtjaEWrmrm8UibigH8HhMv5I5TVxcQ6ZlMBwbJ4NU0-VKtvCy_2h1b82O_rcv87WyVrKWLQ8G4SHdGi1o8BxW1DR1fc-IqKlgNY7_HZ58mhdtDUE5Tq8wtEFLgBYvYU-JTR5AEI9fS5O1YIXmVoheMejf_u5do_aUqx29zXNo-J_4VBoNjOmG-8M6NESghEWoT_gvoEo6yxU0YHc5iXk2b58e19AmDVUCIY9A6S_yQR_8U6UwZhAZBQUR5O-KTHyeyuhTzlCVD-QMXMvIK7XLTNJLRQZ7vx2MTw9E8J3rKVtgTcwky9_Pfw
 
 ## AUTH CALLS
 
@@ -9,7 +9,7 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "username": {{testEmail}},
+  "username": "{{testEmail}}",
   "password": "Test(1234)"
 }
 ###
@@ -17,7 +17,7 @@ POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
-  "username": {{testEmail}},
+  "username": "{{testEmail}}",
   "password": "Test(1234)"
 }
 
@@ -26,7 +26,7 @@ POST {{baseUrl}}/verify
 Content-Type: application/json
 
 {
-  "username": {{testEmail}},
+  "username": "{{testEmail}}",
   "verificationCode": "639065"
 }
 
@@ -35,7 +35,7 @@ POST {{baseUrl}}/logout
 Content-Type: application/json
 
 {
-  "username": {{testEmail}}
+  "username": "{{testEmail}}"
 }
 
 ## ITEM CALLS
@@ -58,4 +58,13 @@ Authorization: {{authToken}}
 
 {
   "query": "query {\n  categories {\n    cat_uuid,\n    cat_name\n  }\n}"
+}
+
+### create category
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "query": "mutation {\n  createCategory(name:\"test\") {\n    cat_uuid\n  }\n}"
 }
