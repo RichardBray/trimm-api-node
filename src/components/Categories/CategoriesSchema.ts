@@ -3,7 +3,7 @@ import CategoriesResolver from "./CategoriesResolver.js";
 
 const typeDefs = `#graphql
   type Mutation {
-    createCategory(ame: String!): Category
+    createCategory(name: String!): Category
     deleteCategory(id: String!): Boolean!
   }
 
@@ -18,9 +18,13 @@ const typeDefs = `#graphql
   }
 `;
 
-const { getAllCategories } = CategoriesResolver;
+const { getAllCategories, createCategory, deleteCategory } = CategoriesResolver;
 
 const resolvers = {
+  Mutation: {
+    createCategory,
+    deleteCategory,
+  },
   Query: {
     categories: getAllCategories,
   },

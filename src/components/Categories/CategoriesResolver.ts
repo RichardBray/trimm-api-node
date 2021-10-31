@@ -54,5 +54,60 @@ class CategoriesResolver {
       return err;
     }
   }
+
+  static createCategory(
+    req: Request,
+    args: { name: string },
+    context: Context
+  ) {
+    try {
+      const userData: JwtPayload = AuthController.verifyAccessToken(req);
+      const existingCategoryNqames =
+        CategoriesResolver.#getExistingCategoryNames(userData.username);
+      return context.prisma.categories.create({
+        data: {
+          cat_name: args.name,
+          cat_uuid: generateUuid(true),
+          user_uuid: userData.username,
+        },
+      });
+    } catch (err) {
+      logger.error(`createCategory Error: ${err}`);
+      return err;
+    }
+  }
+
+  static async #getExistingCategoryNames(userId: string): Promise<string[]> {
+    const existingCategories = await prisma.categories.findMany({
+      where: {
+        user_uuid: userId,
+      },
+    });
+
+    const existingCategoryNames = existingCategories.map(
+      (categories) => categories.cat_name
+    );
+
+    return existingCategoryNames;
+  }
+
+  static deleteCategory(req: Request, args: { id: string }, context: Context) {
+    try {
+      const userData: JwtPayload = AuthController.verifyAccessToken(req);
+
+      if (!userData) {
+        throw new Error("Authorisation neede");
+      }
+
+      return context.prisma.categories.delete({
+        where: {
+          id: args.id,
+        },
+      });
+    } catch (err) {
+      logger.error(`createCategory Error: ${err}`);
+      return err;
+    }
+  }
 }
 export default CategoriesResolver;
