@@ -11,14 +11,15 @@ import CategoriesSchema from "./components/Categories/CategoriesSchema.js";
 import { context } from "./helpers/graphqlContext.js";
 
 const app = express();
+const v1 = express.Router();
 
-app.use(authRouter);
+v1.use(authRouter);
 
 const mergedSchema = mergeSchemas({
   schemas: [ItemsSchema, CategoriesSchema],
 });
 
-app.use(
+v1.use(
   "/graphql",
   graphqlHTTP((request) => ({
     schema: mergedSchema,
@@ -28,6 +29,9 @@ app.use(
     pretty: true,
   }))
 );
+
+app.use("/v1", v1);
+app.use("/", v1);
 
 app.listen(config.port, () => {
   logger.info(`🚀 Server running on port ${config.port}`);

@@ -1,6 +1,6 @@
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:3000/v1
 @testEmail = fekisimi@tempmailin.com
-@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiYzNmYTkyM2ItYjBiNC00NTQ3LWE5OTYtNWIzYjBkOGY4ZmUzIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiJmNDAxMDQ1YS00ODY5LTQ3OGYtYTA4OS04Zjc5ZmE4YzJiY2MiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1NTgzNzEzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzU1ODczMTMsImlhdCI6MTYzNTU4MzcxMywianRpIjoiYWY5NmI1ZTktYTI3Yi00YTA4LWFjMTYtZmJjMzViNzY1Mzg3IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.on8yjf6Mg57F1E4zwOf_6kR9MmRnIroxtjaEWrmrm8UibigH8HhMv5I5TVxcQ6ZlMBwbJ4NU0-VKtvCy_2h1b82O_rcv87WyVrKWLQ8G4SHdGi1o8BxW1DR1fc-IqKlgNY7_HZ58mhdtDUE5Tq8wtEFLgBYvYU-JTR5AEI9fS5O1YIXmVoheMejf_u5do_aUqx29zXNo-J_4VBoNjOmG-8M6NESghEWoT_gvoEo6yxU0YHc5iXk2b58e19AmDVUCIY9A6S_yQR_8U6UwZhAZBQUR5O-KTHyeyuhTzlCVD-QMXMvIK7XLTNJLRQZ7vx2MTw9E8J3rKVtgTcwky9_Pfw
+@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMGE2NWM4MmMtOGUyNy00NDNjLWJmZDktMDY4YTVhZjkxOGI0Iiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiI3OGU5NzE2MS0xMjZhLTRmNjUtYTQ4ZC1iMjIxODA0ZDY5MDkiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1NzgyNjg4LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzU3ODYyODgsImlhdCI6MTYzNTc4MjY4OCwianRpIjoiNmY2MjNjOWMtOGFmZC00Mzc5LWJmMzYtZTMzZWNmNGI4N2E5IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.xCsAjLUY8aekkfCBiTljpcnMB4tipTfbJxANS2DlAc4nL7HX3lHRaip7Rq2-5iw7_9JylK4G0DpwtHLc1wVYVGNB1BifurURJ3pbhykvDTXxcDDxurTq3B8fC3Iy1Y7-yGajhDkF-6yEpoK2iE00yHah97esbvaif9gtpa2RySbXwM7JcF_fbZLgITRUIEigOlmtZ4vZOnrpYlNTPocf11Zc-UHp6FU1Pm0jvsTkt0qz3qCK3YoemUIWzYrH3AKMbdfuJBpU4iuahzFJG_8L-AKVSkzlesoI3JeP68e9aYtx0TN9m50OpBjyTFKCrW2Pyu2PpsoWcnqw4IF22EXJfQ
 
 ## AUTH CALLS
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 {
   "username": "{{testEmail}}",
-  "verificationCode": "639065"
+  "verificationCode": "106029"
 }
 
 ###
@@ -57,7 +57,7 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "query": "query {\n  categories {\n    cat_uuid,\n    cat_name\n  }\n}"
+  "query": "query {\n  categories {\n    cat_uuid,\n    cat_name\n  id\n }\n}"
 }
 
 ### create category
@@ -67,4 +67,13 @@ Authorization: {{authToken}}
 
 {
   "query": "mutation {\n  createCategory(name:\"test\") {\n    cat_uuid\n  }\n}"
+}
+
+### delete category
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "query": "mutation {\n  deleteCategory(id:\"617ad9a6c249bef8cadd1e8a\") {\n    cat_uuid\n  }\n}"
 }

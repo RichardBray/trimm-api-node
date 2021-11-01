@@ -4,7 +4,7 @@ import CategoriesResolver from "./CategoriesResolver.js";
 const typeDefs = `#graphql
   type Mutation {
     createCategory(name: String!): Category
-    deleteCategory(id: String!): Boolean!
+    deleteCategory(id: String!): Category
   }
 
   type Query {
@@ -12,6 +12,7 @@ const typeDefs = `#graphql
   }
 
   type Category {
+    id: String!
     cat_uuid: String!
     cat_name: String!
     user_uuid: String!
