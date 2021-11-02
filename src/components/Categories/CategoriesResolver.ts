@@ -55,7 +55,7 @@ class CategoriesResolver {
     }
   }
 
-  static createCategory(
+  static async createCategory(
     req: Request,
     args: { name: string },
     context: Context
@@ -63,7 +63,14 @@ class CategoriesResolver {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
       const existingCategoryNqames =
-        CategoriesResolver.#getExistingCategoryNames(userData.username);
+        await CategoriesResolver.#getExistingCategoryNames(userData.username);
+
+      for (const existingCategoryNqame of existingCategoryNqames) {
+        if (existingCategoryNqame.cat_name === args.name) {
+          throw new Error("Category already exists");
+        }
+      }
+
       return context.prisma.categories.create({
         data: {
           cat_name: args.name,
@@ -77,31 +84,41 @@ class CategoriesResolver {
     }
   }
 
-  static async #getExistingCategoryNames(userId: string): Promise<string[]> {
-    const existingCategories = await prisma.categories.findMany({
+  static async #getExistingCategoryNames(
+    userId: string
+  ): Promise<prismaPkg.categories[]> {
+    return await prisma.categories.findMany({
       where: {
         user_uuid: userId,
       },
     });
-
-    const existingCategoryNames = existingCategories.map(
-      (categories) => categories.cat_name
-    );
-
-    return existingCategoryNames;
   }
 
-  static deleteCategory(req: Request, args: { id: string }, context: Context) {
+  static async deleteCategory(
+    req: Request,
+    args: { cat_uuid: string },
+    context: Context
+  ) {
     try {
+      let catId = "";
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
 
       if (!userData) {
         throw new Error("Authorisation neede");
       }
 
+      const existingCategoryNqames =
+        await CategoriesResolver.#getExistingCategoryNames(userData.username);
+
+      for (const existingCategoryNqame of existingCategoryNqames) {
+        if (existingCategoryNqame.cat_uuid === args.cat_uuid) {
+          catId = existingCategoryNqame.id;
+        }
+      }
+
       return context.prisma.categories.delete({
         where: {
-          id: args.id,
+          id: catId,
         },
       });
     } catch (err) {

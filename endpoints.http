@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/v1
 @testEmail = fekisimi@tempmailin.com
-@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMGE2NWM4MmMtOGUyNy00NDNjLWJmZDktMDY4YTVhZjkxOGI0Iiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiI3OGU5NzE2MS0xMjZhLTRmNjUtYTQ4ZC1iMjIxODA0ZDY5MDkiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1NzgyNjg4LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzU3ODYyODgsImlhdCI6MTYzNTc4MjY4OCwianRpIjoiNmY2MjNjOWMtOGFmZC00Mzc5LWJmMzYtZTMzZWNmNGI4N2E5IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.xCsAjLUY8aekkfCBiTljpcnMB4tipTfbJxANS2DlAc4nL7HX3lHRaip7Rq2-5iw7_9JylK4G0DpwtHLc1wVYVGNB1BifurURJ3pbhykvDTXxcDDxurTq3B8fC3Iy1Y7-yGajhDkF-6yEpoK2iE00yHah97esbvaif9gtpa2RySbXwM7JcF_fbZLgITRUIEigOlmtZ4vZOnrpYlNTPocf11Zc-UHp6FU1Pm0jvsTkt0qz3qCK3YoemUIWzYrH3AKMbdfuJBpU4iuahzFJG_8L-AKVSkzlesoI3JeP68e9aYtx0TN9m50OpBjyTFKCrW2Pyu2PpsoWcnqw4IF22EXJfQ
+@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMDViNWRkYmItMWI0Mi00YmFkLTliZmItMWJiYjRlZTRlOGFjIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiIzMzk5ZjAyNS00NjU0LTQ0ZWEtODI2My1hMDNlN2E4NzE5YzgiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM1ODgwNzExLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzU4ODQzMTEsImlhdCI6MTYzNTg4MDcxMSwianRpIjoiYWVkZTQ5MWYtNmU3Yy00ZWUxLTg0MDQtMzU1NzNiMDNhMDVjIiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.GOac2aMlKSpw4HQsmk3M7EHHB-10h5OVXL7q4EDCMWMj_oBDZdIUm-LUWFfYZpLedu8rXR0CfbZvYTwIjkaA60P3OB37xYbcfDyX6P9PdV3IKj0vSSrLXhZ_xKK5vlJhFTiyG5nUQpm3Ol5-Mol-x-JLTkRkAdmvaGC2uhw-YzehyL6GSRp721FpCOy9ZCawAEl41Wt0dwDmkzIj9PNRDwDla4KqjSjv9dHGMiDSOBWAxc7NT-XnKHH9vEb9EBSYodBJBAGoRW7TrVEjC2ww823VqTUkHMC-jOT-8pSko3DSoF3xwQyrDMCnrSMb2GYKd6F3rsSabEwKPpSqC3RqwQ
 
 ## AUTH CALLS
 
@@ -57,7 +57,7 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "query": "query {\n  categories {\n    cat_uuid,\n    cat_name\n  id\n }\n}"
+  "query": "query {\n  categories {\n    cat_uuid,\n    cat_name\n }\n}"
 }
 
 ### create category
@@ -75,5 +75,5 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "query": "mutation {\n  deleteCategory(id:\"617ad9a6c249bef8cadd1e8a\") {\n    cat_uuid\n  }\n}"
+  "query": "mutation {\n  deleteCategory(cat_uuid:\"c0a79415-ecc5-40c5-bb9b-dc5ec70f32b6\") {\n    cat_uuid\n  }\n}"
 }

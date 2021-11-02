@@ -28,7 +28,6 @@ https://swc.rs/docs/installation/
 
 ### Things to docs
 
-- Prevent creating already existing category
 - Save user's first name
 - Create an item
 - Delete an item
