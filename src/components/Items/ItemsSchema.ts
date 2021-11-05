@@ -18,14 +18,14 @@ const typeDefs = `#graphql
     item_price: Int!
     create_dttm: DateTime
     user_id: ID!
-    cat_id: Int!
+    cat_uuid: String!
   }
 
   input ItemCreateInput {
     name: String!
     price: Int!
     createDttm: DateTime!
-    catId: String!
+    catUuid: String!
   }
 
   scalar DateTime

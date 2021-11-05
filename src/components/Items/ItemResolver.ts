@@ -13,10 +13,12 @@ const { PrismaClient } = prismaPkg;
 const prisma = new PrismaClient();
 
 type ItemCreateInput = {
-  name: string;
-  price: number;
-  createDttm: string;
-  catId: string;
+  itemCreateInput: {
+    name: string;
+    price: number;
+    createDttm: string;
+    catUuid: string;
+  };
 };
 class ItemResolver {
   static getAllItems(
@@ -26,12 +28,14 @@ class ItemResolver {
   ): Promise<spending[]> | unknown {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
+      const greaterThanOrEqual = new Date(args.startDate).toISOString();
+      const lessThanOrEqual = new Date(args.endDate).toISOString();
 
       return context.prisma.spending.findMany({
         where: {
           create_dttm: {
-            gte: new Date(args.startDate),
-            lte: new Date(args.endDate),
+            gte: greaterThanOrEqual,
+            lte: lessThanOrEqual,
           },
           user_uuid: userData.username,
         },
@@ -45,14 +49,16 @@ class ItemResolver {
   static createItem(req: Request, args: ItemCreateInput, context: Context) {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
+      const { name, price, createDttm, catUuid } = args.itemCreateInput;
+
       return context.prisma.spending.create({
         data: {
           item_uuid: generateUuid(true),
-          item_name: args.name,
-          item_price: args.price,
-          create_dttm: args.createDttm,
+          item_name: name,
+          item_price: price,
+          create_dttm: createDttm,
           user_uuid: userData.username,
-          cat_uuid: args.catId,
+          cat_uuid: catUuid,
         },
       });
     } catch (err) {

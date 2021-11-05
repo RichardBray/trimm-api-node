@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/v1
 @testEmail = fekisimi@tempmailin.com
-@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiYjZkNmJkOWMtMGM0OC00NDI5LWE2OTYtZGI4YWUxOWJiMTRiIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiJkNTFjNjdhYS00MDk4LTRhOGYtYTk4Yy0zMTA5ZGUzOGE1NTQiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM2MDYyNjc2LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzYwNjYyNzYsImlhdCI6MTYzNjA2MjY3NiwianRpIjoiODhkNWY2NjYtMTUxZS00NDNmLThhN2ItNmFlZDVmZDY2MDY3IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.jxXuS4vCfWIAmLI8ALvdQ-j_prYGw9QncTcPyFTEX0n6JY04XNhFraVd6lJbdUeKY4amH9AauA3h4STHmyLswXIUY_H15uHI00DC9CI7dMcwPF_LxiOpaGC4t6JK1Olb0m9Vj73fFJ2-EZl0jTDWKYH4KEgk8y0IYYQeqH1LLOu_jtw_zpDhMOS3K9hkNdnmF5vyjbUNxwR6J0yUWmaJbykKkdJh6Jt6fwJJRshzKm_0PqN_Mbyc9Yz3yL91N6lp0GlBbrBBUhu9fNK1NNjJlZbHENabFdAMmWzpTnjRMC-I0ubvgLfCxZNzjjXxSThofdVgRPLhZ7qw08rXqa1PmA
+@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMTZjMzZiNzItZmNlMS00NGY1LTlmNDctZmM1MGY1NDlkNzIyIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiI5NGYxZjc1Zi1lZTQyLTQ1ODgtODg4NS1lNTQ4MmRiYjZjNmYiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjM2MTQ3NTU0LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2MzYxNTExNTQsImlhdCI6MTYzNjE0NzU1NCwianRpIjoiMTg2NDBlZGItZjEwMi00YzFkLThlMjYtYTcyNjgyNmVkZjM3IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.C6IN4AVhOSrtTM0_l7vDb89lAdtlebnsP-I8h3yo-qkmUTan3pwIkH4ag-adWUG5TbSidr9A2MWSEOxs_Exo2QvmuHxxiaXk6NFLgX9NuzZ1Er4nHfFdvMRvrQ9O8gV5ALraeLhH-CKWkHQ7gmhpi5u-QTyCgAP_q2zi8kRvz94anJZqUiGxnw7ivedaKsO-I_MeREafTrOykKGnLyniZqiCGIkKatp96iVQcka1CK1a7A8mRVHwQZN6rcmPzMpbVAIePEUWaRmI0kuIu2S--F7pp5Sq7aHeTptt9thTqLUOKB4MBRhUHzmtWPe0gkEwx1e3lshKtDI9TacSCpdKYg
 
 ## AUTH CALLS
 
@@ -47,7 +47,16 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "query": "query {\n  items(startDate:\"2021-01-01\", endDate: \"2021-02-01\") {\n    item_uuid,\n    item_name,\n    item_price,\n    create_dttm,\n    cat_id\n  }\n}"
+  "query": "query {\n  items(startDate:\"2021-11-01\", endDate: \"2021-12-01\") {\n    item_uuid,\n    item_name,\n    item_price,\n    create_dttm,\n    cat_uuid\n  }\n}"
+}
+
+### create item
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "query": "mutation {\n  createItem(itemCreateInput: {name: \"test\", price: 10, createDttm: \"2021-11-25T23:45:35.116Z\", catUuid: \"c0a79415-ecc5-40c5-bb9b-dc5ec70f32b6\" }) {\n    item_name,\n    item_uuid\n  }\n}"
 }
 
 ## CATEGORY CALLS

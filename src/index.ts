@@ -24,18 +24,23 @@ v1.use(
   "/graphql",
   graphqlHTTP((request) => ({
     schema: mergedSchema,
-    graphiql: true,
+    graphiql: !config.isProd,
     rootValue: request,
     context,
-    pretty: true,
   }))
 );
 
-app.use(helmet());
+if (config.isProd) {
+  app.use(helmet());
+}
 
 app.use("/v1", v1);
 app.use("/", v1);
 
-app.listen(config.port, () => {
-  logger.info(`🚀 Server running on port ${config.port}`);
-});
+app
+  .listen(config.port, () => {
+    logger.info(`🚀 Server running on port ${config.port}`);
+  })
+  .on("error", (err) => {
+    logger.error(err);
+  });
