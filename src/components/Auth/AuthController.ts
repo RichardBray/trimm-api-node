@@ -14,6 +14,11 @@ import logger from "../../helpers/logger.js";
 import CategoriesResolver from "../Categories/CategoriesResolver.js";
 import UserResolver from "../User/UserResolver.js";
 
+export type UserRegistrationData = {
+  id: string;
+  name: string;
+  email: string;
+};
 class AuthController {
   static login(req: Request, res: Response) {
     try {
@@ -92,10 +97,14 @@ class AuthController {
         } else {
           logger.info(`User registration successful: ${result?.userSub}`);
           const userId = result?.userSub as string;
-          const userEmail = req.body.username;
+          const userData: UserRegistrationData = {
+            id: userId,
+            name: req.body.username,
+            email: req.body.username,
+          };
 
           CategoriesResolver.addDefaultCategories(userId);
-          UserResolver.addDefaultUserSettings(userId, userEmail);
+          UserResolver.addDefaultUserSettings(userData);
           res.status(201).send({
             msg: "SUCCESS",
           });

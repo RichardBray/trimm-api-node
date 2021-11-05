@@ -62,11 +62,12 @@ class CategoriesResolver {
   ) {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
-      const existingCategoryNqames =
-        await CategoriesResolver.#getExistingCategoryNames(userData.username);
+      const existingCategories = await CategoriesResolver.#getExistingCategory(
+        userData.username
+      );
 
-      for (const existingCategoryNqame of existingCategoryNqames) {
-        if (existingCategoryNqame.cat_name === args.name) {
+      for (const existingCategoryName of existingCategories) {
+        if (existingCategoryName.cat_name === args.name) {
           throw new Error("Category already exists");
         }
       }
@@ -84,7 +85,7 @@ class CategoriesResolver {
     }
   }
 
-  static async #getExistingCategoryNames(
+  static async #getExistingCategory(
     userId: string
   ): Promise<prismaPkg.categories[]> {
     return await prisma.categories.findMany({
@@ -100,31 +101,41 @@ class CategoriesResolver {
     context: Context
   ) {
     try {
-      let catId = "";
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
 
       if (!userData) {
         throw new Error("Authorisation neede");
       }
 
-      const existingCategoryNqames =
-        await CategoriesResolver.#getExistingCategoryNames(userData.username);
-
-      for (const existingCategoryNqame of existingCategoryNqames) {
-        if (existingCategoryNqame.cat_uuid === args.cat_uuid) {
-          catId = existingCategoryNqame.id;
-        }
-      }
+      const id = await CategoriesResolver.#getCategoryFromId(userData, args);
 
       return context.prisma.categories.delete({
         where: {
-          id: catId,
+          id,
         },
       });
     } catch (err) {
       logger.error(`createCategory Error: ${err}`);
       return err;
     }
+  }
+
+  static async #getCategoryFromId(
+    userData: JwtPayload,
+    args: { cat_uuid: string }
+  ) {
+    let catId = "";
+
+    const existingCategories = await CategoriesResolver.#getExistingCategory(
+      userData.username
+    );
+
+    for (const existingCategoryName of existingCategories) {
+      if (existingCategoryName.cat_uuid === args.cat_uuid) {
+        catId = existingCategoryName.id;
+      }
+    }
+    return catId;
   }
 }
 export default CategoriesResolver;

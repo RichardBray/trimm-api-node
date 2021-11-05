@@ -28,10 +28,7 @@ https://swc.rs/docs/installation/
 
 ### Things to docs
 
-- Save user's first name
-- Create an item
-- Delete an item
 - Edit an item
-- Create/delete/edit spending category
+- Edit spending category
 - Update user currency type (currency enum)
 - Google pay transations integration????

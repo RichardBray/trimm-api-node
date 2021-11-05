@@ -1,4 +1,4 @@
-function generateUuid(useDashes = false) {
+function generateUuid(useDashes = false): string {
   const template = useDashes
     ? "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
     : "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx";

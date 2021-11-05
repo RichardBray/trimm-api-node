@@ -1,11 +1,11 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { DateTimeResolver } from "graphql-scalars";
-import ItemResolvers from "./ItemResolvers.js";
+import ItemResolver from "./ItemResolver.js";
 
 const typeDefs = `#graphql
   type Mutation {
     createItem(itemCreateInput: ItemCreateInput!): Item
-    deleteItem(id: String!): Boolean!
+    deleteItem(item_uuid: String!): Item
   }
 
   type Query {
@@ -22,18 +22,22 @@ const typeDefs = `#graphql
   }
 
   input ItemCreateInput {
-    item_name: String!
-    item_price: Int!
-    create_dttm: DateTime!
-    cat_id: Int!
+    name: String!
+    price: Int!
+    createDttm: DateTime!
+    catId: String!
   }
 
   scalar DateTime
 `;
 
-const { getAllItems } = ItemResolvers;
+const { getAllItems, createItem, deleteItem } = ItemResolver;
 
 const resolvers = {
+  Mutation: {
+    createItem,
+    deleteItem,
+  },
   Query: {
     items: getAllItems,
   },
