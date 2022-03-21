@@ -2,6 +2,14 @@
 
 _Note: this will not work without a .env file_
 
+run for dev
+
+```sh
+npm run dev
+```
+
+Then go to /v1/graphql to access graphiql
+
 ## Technologies
 
 - ExpressJS

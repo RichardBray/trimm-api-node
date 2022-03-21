@@ -15,7 +15,7 @@ const typeDefs = `#graphql
   type Item {
     item_uuid: ID!
     item_name: String!
-    item_price: Int!
+    item_price: Float!
     create_dttm: DateTime
     user_id: ID!
     cat_uuid: String!
@@ -23,7 +23,7 @@ const typeDefs = `#graphql
 
   input ItemCreateInput {
     name: String!
-    price: Int!
+    price: Float!
     createDttm: DateTime!
     catUuid: String!
   }

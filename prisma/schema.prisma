@@ -19,7 +19,7 @@ model spending {
   id          String @id @default(dbgenerated()) @map("_id") @db.ObjectId
   item_uuid   String
   item_name   String
-  item_price  Int
+  item_price  Float
   create_dttm DateTime
   cat_uuid    String
   user_uuid   String
