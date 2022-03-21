@@ -9,14 +9,14 @@ datasource db {
 }
 
 model categories {
-  id        String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
   cat_uuid  String
   cat_name  String
   user_uuid String
 }
 
 model spending {
-  id          String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
   item_uuid   String
   item_name   String
   item_price  Float
@@ -26,7 +26,7 @@ model spending {
 }
 
 model users {
-  id            String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
   user_uuid     String
   user_name     String
   user_email    String
