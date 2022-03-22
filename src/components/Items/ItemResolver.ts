@@ -20,6 +20,14 @@ type ItemCreateInput = {
     catUuid: string;
   };
 };
+
+type ItemEditInput = {
+  itemEditInput: {
+    uuid: string;
+    name?: string;
+    price?: number;
+  };
+};
 class ItemResolver {
   static getAllItems(
     req: Request,
@@ -67,14 +75,6 @@ class ItemResolver {
     }
   }
 
-  static async #getExistingItem(userId: string): Promise<prismaPkg.spending[]> {
-    return await prisma.spending.findMany({
-      where: {
-        user_uuid: userId,
-      },
-    });
-  }
-
   static async deleteItem(
     req: Request,
     args: { item_uuid: string },
@@ -83,14 +83,20 @@ class ItemResolver {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
       if (!userData) {
-        throw new Error("Authorisation neede");
+        throw new Error("Authorisation needed");
       }
 
-      const id = await ItemResolver.#getItemFromId(userData, args);
+      const dbSpendingItems = await ItemResolver.#getSpendingItemsForThisUser(
+        userData.username
+      );
+      const itemDatabaseId = ItemResolver.#getDBIdFromUuid(
+        dbSpendingItems,
+        args.item_uuid
+      );
 
       return context.prisma.spending.delete({
         where: {
-          id,
+          id: itemDatabaseId,
         },
       });
     } catch (err) {
@@ -99,22 +105,73 @@ class ItemResolver {
     }
   }
 
-  static async #getItemFromId(
-    userData: JwtPayload,
-    args: { item_uuid: string }
-  ) {
-    let itemId = "";
+  static #getDBIdFromUuid(
+    dbSpendingItems: spending[],
+    itemUuid: string
+  ): string {
+    let databaseId = "";
 
-    const existingItems = await ItemResolver.#getExistingItem(
-      userData.username
-    );
-
-    for (const existingItem of existingItems) {
-      if (existingItem.item_uuid === args.item_uuid) {
-        itemId = existingItem.id;
+    for (const dbSpendingItem of dbSpendingItems) {
+      if (dbSpendingItem.item_uuid === itemUuid) {
+        databaseId = dbSpendingItem.id;
       }
     }
-    return itemId;
+    return databaseId;
+  }
+
+  static async #getSpendingItemsForThisUser(
+    userId: string
+  ): Promise<prismaPkg.spending[]> {
+    return await prisma.spending.findMany({
+      where: {
+        user_uuid: userId,
+      },
+    });
+  }
+
+  static async editItem(req: Request, args: ItemEditInput, context: Context) {
+    try {
+      const userData: JwtPayload = AuthController.verifyAccessToken(req);
+      if (!userData) {
+        throw new Error("Authorisation needed");
+      }
+
+      const { uuid } = args.itemEditInput;
+      const dbSpendingItems = await ItemResolver.#getSpendingItemsForThisUser(
+        userData.username
+      );
+      const itemDatabaseId = ItemResolver.#getDBIdFromUuid(
+        dbSpendingItems,
+        uuid
+      );
+
+      return context.prisma.spending.update({
+        where: {
+          id: itemDatabaseId,
+        },
+        data: ItemResolver.#getDataToUpdate(args),
+      });
+    } catch (err) {
+      logger.error(`editItem Error: ${err}`);
+      return err;
+    }
+  }
+
+  static #getDataToUpdate(args: ItemEditInput) {
+    const { name, price } = args.itemEditInput;
+    const dataToUpdate: {
+      item_name?: string;
+      item_price?: number;
+    } = {};
+
+    if (name) {
+      dataToUpdate["item_name"] = name;
+    }
+    if (price) {
+      dataToUpdate["item_price"] = price;
+    }
+
+    return dataToUpdate;
   }
 }
 

@@ -36,7 +36,6 @@ https://swc.rs/docs/installation/
 
 ### Things to docs
 
-- Edit an item
 - Edit spending category
 - Update user currency type (currency enum)
 - Google pay transations integration????
