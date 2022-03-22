@@ -34,8 +34,8 @@ Then go to /v1/graphql to access graphiql
 `@swc/core-linux-musl`
 https://swc.rs/docs/installation/
 
-### Things to docs
+### Things to do
 
 - Edit spending category
-- Update user currency type (currency enum)
+- CSV export
 - Google pay transations integration????

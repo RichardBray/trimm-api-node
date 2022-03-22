@@ -6,7 +6,7 @@ const typeDefs = `#graphql
   type Mutation {
     createItem(itemCreateInput: ItemCreateInput!): Item
     deleteItem(item_uuid: String!): Item
-    editItem(itemEditInput: ItemEditInput): Item
+    updateItem(itemUpdateInput: ItemUpdateInput): Item
   }
 
   type Query {
@@ -29,7 +29,7 @@ const typeDefs = `#graphql
     catUuid: String!
   }
 
-  input ItemEditInput {
+  input ItemUpdateInput {
     uuid: String!
     name: String,
     price: Float
@@ -38,13 +38,13 @@ const typeDefs = `#graphql
   scalar DateTime
 `;
 
-const { getAllItems, createItem, deleteItem, editItem } = ItemResolver;
+const { getAllItems, createItem, deleteItem, updateItem } = ItemResolver;
 
 const resolvers = {
   Mutation: {
     createItem,
     deleteItem,
-    editItem,
+    updateItem,
   },
   Query: {
     items: getAllItems,

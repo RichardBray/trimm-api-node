@@ -1,18 +1,18 @@
 import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
-import prismaPkg, { Prisma } from "@prisma/client/index.js";
+import prismaPkg, { Prisma, categories } from "@prisma/client/index.js";
 
 import generateUuid from "../../helpers/uuid.js";
 import AuthController from "../Auth/AuthController.js";
 import logger from "../../helpers/logger.js";
 import { Context } from "../../helpers/graphqlContext.js";
 
-const { PrismaClient } = prismaPkg;
-const prisma = new PrismaClient();
-
 class CategoriesResolver {
   static async addDefaultCategories(userId: string) {
     try {
+      const { PrismaClient } = prismaPkg;
+      const prisma = new PrismaClient();
+
       const defaultCategories = [
         "Transport",
         "Entertainment",
@@ -63,7 +63,8 @@ class CategoriesResolver {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
       const existingCategories = await CategoriesResolver.#getExistingCategory(
-        userData.username
+        userData.username,
+        context
       );
 
       for (const existingCategoryName of existingCategories) {
@@ -86,9 +87,10 @@ class CategoriesResolver {
   }
 
   static async #getExistingCategory(
-    userId: string
+    userId: string,
+    context: Context
   ): Promise<prismaPkg.categories[]> {
-    return await prisma.categories.findMany({
+    return await context.prisma.categories.findMany({
       where: {
         user_uuid: userId,
       },
@@ -107,7 +109,14 @@ class CategoriesResolver {
         throw new Error("Authorisation neede");
       }
 
-      const id = await CategoriesResolver.#getCategoryFromId(userData, args);
+      const existingCategories = await CategoriesResolver.#getExistingCategory(
+        userData.username,
+        context
+      );
+      const id = await CategoriesResolver.#getCategoryFromId(
+        existingCategories,
+        args
+      );
 
       return context.prisma.categories.delete({
         where: {
@@ -121,16 +130,12 @@ class CategoriesResolver {
   }
 
   static async #getCategoryFromId(
-    userData: JwtPayload,
+    dbCategories: categories[],
     args: { cat_uuid: string }
   ) {
     let catId = "";
 
-    const existingCategories = await CategoriesResolver.#getExistingCategory(
-      userData.username
-    );
-
-    for (const existingCategoryName of existingCategories) {
+    for (const existingCategoryName of dbCategories) {
       if (existingCategoryName.cat_uuid === args.cat_uuid) {
         catId = existingCategoryName.id;
       }

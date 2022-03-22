@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/v1
 @testEmail = fekisimi@tempmailin.com
-@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMWExYTA0M2YtNGFlNS00ZjNmLTgxMzItYzExOTEyNGQyODE3Iiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiJkYjRkZDdiYS0zZmQxLTQ4MzQtODJmMi1iZjQyNzNhOWY4ZmUiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjQ3OTQ4OTU0LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2NDc5NTI1NTQsImlhdCI6MTY0Nzk0ODk1NCwianRpIjoiODgzOWE0MDQtM2Q4Ni00NmMwLWFhYmQtZjQyMzRmMTExZWI5IiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.StMKOY7oj29RnQtpWzkv8XMOwkAdnEO-KxjyPfCX1_g_skyP8sz7jWVynrPxW6Pv4MUY8J4DlM1mMGeVEzq3cViWoNP90oKNv7iy6_wsqxh4nJIKmcJ6mXPiKON4t6GlBjE_VcoJGPTTu5m4gXFc7yZFPTXRnW96by4IcLuRQoRtVkF3PoYM76II87TStkR2N5aSkgwryf-9JNEllphFytHMSoS3dB90x6jqxoY0CPm6WL2R1oHc0b4b1X8IC50x5FtZPMbUpUOXB5awhDgD-JbG5NNpTZkWatNkPj1JRy_ByNfSb8fP3UmbYWPZjkNTv90_mJNabZEBzyByqI2ZUw
+@authToken = Bearer eyJraWQiOiJuak04cjhkVFl1bHowTWxYTmFcL0paaXFVaVwvVU1EUXN1SjNaV3hxNGV1VzQ9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMWI2YjMxMjUtN2JmZS00NmVmLWJkOTktMDI4ZGQ5MjM3NzFmIiwic3ViIjoiZWQ4ZmU0NmItOGZjZC00MTQ3LThmY2QtNzI0OGUwMWM2NGM3IiwiZXZlbnRfaWQiOiIxMzkxZmU5OS03NzNjLTRhNDEtODk0YS02YmUxNzFiOGIwZTAiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjQ3OTU0MzMxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9ydWNwOU50SGoiLCJleHAiOjE2NDc5NTc5MzEsImlhdCI6MTY0Nzk1NDMzMSwianRpIjoiY2RlY2QwYWYtM2FiZi00MDVmLWIzYzItYzdmNmRmMzc3MzIzIiwiY2xpZW50X2lkIjoiM28wYm10MjByaXIydXU5dWF1bDM2cjloamkiLCJ1c2VybmFtZSI6ImVkOGZlNDZiLThmY2QtNDE0Ny04ZmNkLTcyNDhlMDFjNjRjNyJ9.KyhfKq1QiD4VJrnfKddHk-KXoqHXMNKwDz2tSmQRVNScNsYb1Y69jxPz6yBlRRqpXXZF-gzOyJKX0rG5pjdPQWQETQqT4feIEEUf6d1m8oATZJI4PYkGyumb7z6EBxqBNU-QDp74o_-1YyPPGVGMi0XRHudNFuAgHwVrZdxzzEblnO9QIpCQxlSe5Bs4cGYMH1pSwhG4Y_oRJVVd-thqwLwVvjK2TQ-mRM16BATTAxE3BkngkaglUQhScaQGF4ZI8xNLHlo0v-JLYXJWqxAUHXxnK049uXFMn-Wg2AXWsE__QNXSEIXfsW0Il8di2fDK9PoZ7XVQeKej3eatny6psQ
 
 ## AUTH CALLS
 
@@ -65,7 +65,7 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "query": "mutation {\n  editItem(itemEditInput: {uuid: \"76369ac4-0ac7-4181-8869-00f16c8c028d\", name: \"chocolate chip\"}) {\n    item_name,\n    item_uuid\n  item_price\n }\n}"
+  "query": "mutation {\n  updateItem(itemEditInput: {uuid: \"76369ac4-0ac7-4181-8869-00f16c8c028d\", name: \"chocolate chip\"}) {\n    item_name,\n    item_uuid\n  item_price\n }\n}"
 }
 
 ## CATEGORY CALLS
@@ -95,4 +95,25 @@ Authorization: {{authToken}}
 
 {
   "query": "mutation {\n  deleteCategory(cat_uuid:\"c0a79415-ecc5-40c5-bb9b-dc5ec70f32b6\") {\n    cat_uuid\n  }\n}"
+}
+
+
+## USER CALLS
+
+### get user
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "query": "query {\n  getUser {\n    user_name,\n    user_email\n }\n}"
+}
+
+### update currency
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "query": "mutation {\n  updateCurrency(currency:\"$ - test\") {\n    user_name\n  }\n}"
 }

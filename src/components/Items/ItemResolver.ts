@@ -2,15 +2,12 @@
 
 import { Request } from "express";
 import { JwtPayload } from "jsonwebtoken";
-import prismaPkg, { spending } from "@prisma/client/index.js";
+import { spending } from "@prisma/client/index.js";
 
 import generateUuid from "../../helpers/uuid.js";
 import logger from "../../helpers/logger.js";
 import AuthController from "../Auth/AuthController.js";
 import { Context } from "../../helpers/graphqlContext.js";
-
-const { PrismaClient } = prismaPkg;
-const prisma = new PrismaClient();
 
 type ItemCreateInput = {
   itemCreateInput: {
@@ -21,8 +18,8 @@ type ItemCreateInput = {
   };
 };
 
-type ItemEditInput = {
-  itemEditInput: {
+type ItemUpdateInput = {
+  itemUpdateInput: {
     uuid: string;
     name?: string;
     price?: number;
@@ -36,6 +33,11 @@ class ItemResolver {
   ): Promise<spending[]> | unknown {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
+
+      if (!userData) {
+        throw new Error("Authorisation needed");
+      }
+
       const greaterThanOrEqual = new Date(args.startDate).toISOString();
       const lessThanOrEqual = new Date(args.endDate).toISOString();
 
@@ -87,7 +89,8 @@ class ItemResolver {
       }
 
       const dbSpendingItems = await ItemResolver.#getSpendingItemsForThisUser(
-        userData.username
+        userData.username,
+        context
       );
       const itemDatabaseId = ItemResolver.#getDBIdFromUuid(
         dbSpendingItems,
@@ -120,25 +123,31 @@ class ItemResolver {
   }
 
   static async #getSpendingItemsForThisUser(
-    userId: string
-  ): Promise<prismaPkg.spending[]> {
-    return await prisma.spending.findMany({
+    userId: string,
+    context: Context
+  ): Promise<spending[]> {
+    return await context.prisma.spending.findMany({
       where: {
         user_uuid: userId,
       },
     });
   }
 
-  static async editItem(req: Request, args: ItemEditInput, context: Context) {
+  static async updateItem(
+    req: Request,
+    args: ItemUpdateInput,
+    context: Context
+  ) {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
       if (!userData) {
         throw new Error("Authorisation needed");
       }
 
-      const { uuid } = args.itemEditInput;
+      const { uuid } = args.itemUpdateInput;
       const dbSpendingItems = await ItemResolver.#getSpendingItemsForThisUser(
-        userData.username
+        userData.username,
+        context
       );
       const itemDatabaseId = ItemResolver.#getDBIdFromUuid(
         dbSpendingItems,
@@ -152,13 +161,13 @@ class ItemResolver {
         data: ItemResolver.#getDataToUpdate(args),
       });
     } catch (err) {
-      logger.error(`editItem Error: ${err}`);
+      logger.error(`updateItem Error: ${err}`);
       return err;
     }
   }
 
-  static #getDataToUpdate(args: ItemEditInput) {
-    const { name, price } = args.itemEditInput;
+  static #getDataToUpdate(args: ItemUpdateInput) {
+    const { name, price } = args.itemUpdateInput;
     const dataToUpdate: {
       item_name?: string;
       item_price?: number;

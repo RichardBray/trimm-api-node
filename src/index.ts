@@ -9,6 +9,7 @@ import * as config from "./config.js";
 import authRouter from "./components/Auth/AuthRouter.js";
 import ItemsSchema from "./components/Items/ItemsSchema.js";
 import CategoriesSchema from "./components/Categories/CategoriesSchema.js";
+import UserSchema from "./components/User/UserSchema.js";
 import { context } from "./helpers/graphqlContext.js";
 
 const app = express();
@@ -17,7 +18,7 @@ const v1 = express.Router();
 v1.use(authRouter);
 
 const mergedSchema = mergeSchemas({
-  schemas: [ItemsSchema, CategoriesSchema],
+  schemas: [ItemsSchema, CategoriesSchema, UserSchema],
 });
 
 v1.use(
