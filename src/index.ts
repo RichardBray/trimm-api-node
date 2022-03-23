@@ -2,6 +2,7 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { mergeSchemas } from "@graphql-tools/schema";
 import helmet from "helmet";
+import cors from "cors";
 
 import logger from "./helpers/logger.js";
 import * as config from "./config.js";
@@ -37,6 +38,12 @@ if (config.isProd) {
 
 app.use("/v1", v1);
 app.use("/", v1);
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 app
   .listen(config.port, () => {
