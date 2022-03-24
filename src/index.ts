@@ -16,6 +16,13 @@ import { context } from "./helpers/graphqlContext.js";
 const app = express();
 const v1 = express.Router();
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
 v1.use(authRouter);
 
 const mergedSchema = mergeSchemas({
@@ -38,12 +45,6 @@ if (config.isProd) {
 
 app.use("/v1", v1);
 app.use("/", v1);
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
 
 app
   .listen(config.port, () => {
