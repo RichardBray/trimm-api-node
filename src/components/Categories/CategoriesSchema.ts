@@ -12,7 +12,7 @@ const typeDefs = `#graphql
   }
 
   type Category {
-    cat_uuid: String!
+    cat_uuid: ID!
     cat_name: String!
     user_uuid: String!
   }
