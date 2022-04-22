@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "build": "swc src --out-dir dist",
     "build-dev": "swc src --out-dir dist --source-maps",
