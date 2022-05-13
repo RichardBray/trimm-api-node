@@ -60,10 +60,10 @@ class ItemResolver {
     try {
       const userData: JwtPayload = AuthController.verifyAccessToken(req);
       const { name, price, createDttm, catUuid } = args.itemCreateInput;
-
-      return context.prisma.spending.create({
+      const itemId = generateUuid(true);
+      const result = context.prisma.spending.create({
         data: {
-          item_uuid: generateUuid(true),
+          item_uuid: itemId,
           item_name: name,
           item_price: price,
           create_dttm: createDttm,
@@ -71,6 +71,10 @@ class ItemResolver {
           cat_uuid: catUuid,
         },
       });
+
+      logger.info(`createItem item of id ${itemId} created successfully`);
+
+      return result;
     } catch (err) {
       logger.error(`createItem Error: ${err}`);
       return err;
