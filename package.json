@@ -16,7 +16,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@graphql-tools/schema": "^8.3.5",
     "@prisma/client": "^3.11.0",
